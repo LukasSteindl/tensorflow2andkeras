@@ -37,10 +37,10 @@ model.add(keras.layers.Dropout(DROPOUT))
 model.add(keras.layers.Dense(NB_CLASSES,input_shape=(RESHAPED,),name='dense_layer3',activation='softmax'))
 
 model.summary()
+tf.keras.utils.plot_model(model,to_file="model.png")
+# model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
+# model.fit(X_train,Y_train,batch_size=BATCH_SIZE,epochs=EPOCHS,verbose=VERBOSE,validation_split=VALIDATION_SPLIT)
 
-model.compile(optimizer='Adam',loss='categorical_crossentropy',metrics=['accuracy'])
-model.fit(X_train,Y_train,batch_size=BATCH_SIZE,epochs=EPOCHS,verbose=VERBOSE,validation_split=VALIDATION_SPLIT)
 
-
-test_loss, test_acc = model.evaluate(X_test,Y_test)
-print('Test accuracy:',test_acc)
+# test_loss, test_acc = model.evaluate(X_test,Y_test)
+# print('Test accuracy:',test_acc)
