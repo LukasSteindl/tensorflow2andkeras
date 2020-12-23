@@ -56,11 +56,21 @@ def VGG_16 (weight_path=None):
 ##download weights here:
 #https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels.h5
 path_file = os.path.join(os.getcwd(), "weights", "vgg16_weights_tf_dim_ordering_tf_kernels.h5")
-model = VGG_16(path_file)
-model.summary()
-model.compile(optimizer='sgd',loss='categorical_crossentropy')
+# model = VGG_16(path_file)
+# model.summary()
+# model.compile(optimizer='sgd',loss='categorical_crossentropy')
+
+model.save("mymodel")
+#model.save("mymodel.h5")
+
+reconstructed_model = tf.keras.models.load_model("mymodel")
+#reconstructed_model = tf.keras.models.load_model("mymodel.h5")
+
+
 im = cv2.resize(cv2.imread('elephant.jpg'),(224,224))
 im = np.expand_dims(im,axis=0)
-out = model.predict(im)
+out = reconstructed_model.predict(im)
 print(np.argmax(out))
-print(out)
+
+
+
